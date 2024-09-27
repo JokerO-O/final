@@ -11,9 +11,16 @@
     
     <div id="login-form">
         <h2>Iniciar Sesión</h2>
-        <input type="text" id="username" placeholder="Usuario">
-        <input type="password" id="password" placeholder="Contraseña">
+        <input type="text" id="username" placeholder="Usuario" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
         <button onclick="login()">Iniciar Sesión</button>
+    </div>
+
+    <div id="register-form">
+        <h2>Registrar Usuario</h2>
+        <input type="text" id="new-username" placeholder="Nuevo Usuario" required>
+        <input type="password" id="new-password" placeholder="Nueva Contraseña" required>
+        <button onclick="register()">Registrar</button>
     </div>
 
     <div id="password-generator" style="display:none;">
@@ -23,14 +30,5 @@
     </div>
 
     <script src="script.js"></script>
-  <div id="register-form">
-    <h2>Registrar Usuario</h2>
-    <input type="text" id="new-username" placeholder="Nuevo Usuario" required>
-    <input type="password" id="new-password" placeholder="Nueva Contraseña" required>
-    <button onclick="register()">Registrar</button>
-</div>
-
-</div>
-
 </body>
 </html>
