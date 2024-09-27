@@ -11,16 +11,20 @@
     
     <div id="login-form">
         <h2>Iniciar Sesión</h2>
-        <input type="text" id="username" placeholder="Usuario" required>
-        <input type="password" id="password" placeholder="Contraseña" required>
-        <button onclick="login()">Iniciar Sesión</button>
+        <form onsubmit="event.preventDefault(); login();">
+            <input type="text" id="username" placeholder="Usuario" required aria-label="Usuario">
+            <input type="password" id="password" placeholder="Contraseña" required aria-label="Contraseña">
+            <button type="submit">Iniciar Sesión</button>
+        </form>
     </div>
 
     <div id="register-form">
         <h2>Registrar Usuario</h2>
-        <input type="text" id="new-username" placeholder="Nuevo Usuario" required>
-        <input type="password" id="new-password" placeholder="Nueva Contraseña" required>
-        <button onclick="register()">Registrar</button>
+        <form onsubmit="event.preventDefault(); register();">
+            <input type="text" id="new-username" placeholder="Nuevo Usuario" required aria-label="Nuevo Usuario">
+            <input type="password" id="new-password" placeholder="Nueva Contraseña" required aria-label="Nueva Contraseña">
+            <button type="submit">Registrar</button>
+        </form>
     </div>
 
     <div id="password-generator" style="display:none;">
