@@ -38,7 +38,7 @@ h2 {
 input[type="text"], input[type="password"] {
     width: 100%;
     padding: 10px;
-    margin-top: 10px; /* Cambiado a 10px para consistencia */
+    margin: 10px 0; /* Consistente y simplificado */
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: border-color 0.3s;
@@ -57,12 +57,13 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px; /* Consistente con los otros elementos */
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 10px;
 }
 
 button:hover {
     background-color: #357ab8;
+    transform: scale(1.05); /* Efecto de aumento en el hover */
 }
 
 #generated-password {
