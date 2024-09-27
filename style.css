@@ -7,7 +7,7 @@
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
-    background-image: url('ruta/a/tu/imagen.jpg'); /* Reemplaza con la ruta de tu imagen */
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqYmX-hwwCm8xsp20Z23NGqohJ_OynERJ5PA&s'); /* Imagen de fondo */
     background-size: cover;
     background-position: center;
     color: #fff; /* Cambia el color del texto a blanco para mejor contraste */
