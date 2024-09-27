@@ -53,3 +53,19 @@ function generatePassword() {
 
     document.getElementById('generated-password').textContent = `Contraseña generada: ${password}`;
 }
+
+const textElement = document.getElementById('color-changing-text');
+const text = textElement.textContent;
+textElement.textContent = '';
+
+// Divide el texto en letras y las envuelve en <span> para aplicar animación
+text.split('').forEach((letter, index) => {
+    const span = document.createElement('span');
+    span.textContent = letter;
+    span.style.display = 'inline-block'; // Para que cada letra sea independiente
+    span.style.animationDelay = `${index * 0.1}s`; // Retraso para cada letra
+    span.classList.add('color'); // Clase para aplicar la animación de cambio de color
+    textElement.appendChild(span); // Agrega cada letra al elemento
+});
+
+
