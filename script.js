@@ -24,3 +24,21 @@ function generatePassword() {
     
     document.getElementById('generated-password').textContent = `Contraseña generada: ${password}`;
 }
+function registerUser(username, password) {
+    localStorage.setItem(username, password);
+}
+
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    const storedPassword = localStorage.getItem(username);
+
+    if (storedPassword && storedPassword === password) {
+        alert('Inicio de sesión exitoso');
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('password-generator').style.display = 'block';
+    } else {
+        alert('Usuario o contraseña incorrectos');
+    }
+}
