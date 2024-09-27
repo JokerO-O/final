@@ -7,7 +7,7 @@
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
-    background-image: url('https://www.cloudcenterandalucia.es/wp-content/uploads/2022/01/Hacker-vs-Cracker_Cloud-Center-Andaluc%C3%ADa_Principal.png'); /* Imagen de fondo */
+    background-image: url('https://www.cloudcenterandalucia.es/wp-content/uploads/2022/01/Hacker-vs-Cracker_Cloud-Center-Andaluc%C3%ADa_Principal.png');
     background-size: cover;
     background-position: center;
     color: #fff; /* Cambia el color del texto a blanco para mejor contraste */
@@ -70,4 +70,22 @@ button:hover {
     margin-top: 20px;
     font-weight: bold;
     color: #4CAF50; /* Color verde para resaltar la contraseña generada */
+}
+
+.generador-titulo {
+    color: transparent; /* Para ocultar el color original del texto */
+    font-size: 24px; /* Ajusta el tamaño del texto según sea necesario */
+    position: relative; /* Necesario para el posicionamiento */
+}
+
+.color {
+    animation: colorChange 1s infinite;
+}
+
+@keyframes colorChange {
+    0% { color: #4CAF50; }
+    25% { color: #FF5733; }
+    50% { color: #FFC300; }
+    75% { color: #C70039; }
+    100% { color: #4CAF50; }
 }
