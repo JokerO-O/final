@@ -32,7 +32,6 @@ function login() {
     }
 
     const storedPassword = localStorage.getItem(username);
-
     if (storedPassword && storedPassword === password) {
         alert('Inicio de sesión exitoso');
         document.getElementById('login-form').style.display = 'none';
