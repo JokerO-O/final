@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Generador de Contraseñas Seguras</title>
+</head>
+<body>
+    <h1>Generador de Contraseñas Seguras</h1>
+    
+    <div id="login-form">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" id="username" placeholder="Usuario">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="login()">Iniciar Sesión</button>
+    </div>
+
+    <div id="password-generator" style="display:none;">
+        <h2>Generador de Contraseña</h2>
+        <button onclick="generatePassword()">Generar Contraseña Segura</button>
+        <p id="generated-password"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
