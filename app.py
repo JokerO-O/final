@@ -76,15 +76,17 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
+
         if user and user.check_password(password):
             # Guardar la hora actual en UTC y luego convertir a RD
             user.last_login = datetime.now(pytz.utc)  # Almacena la hora en UTC
             db.session.commit()
             login_user(user)
-            session['user'] = user.username  # Guardamos el nombre de usuario en la sesión
+            session['user'] = user.username
             return redirect(url_for('dashboard'))
         flash('Credenciales incorrectas.')
     return render_template('login.html')
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -119,6 +121,7 @@ def register():
 @app.route('/dashboard')
 @login_required
 def dashboard():
+    # Usamos el método para obtener la última conexión ajustada a la zona horaria
     last_login = current_user.get_last_login_in_timezone()
     return render_template('dashboard.html', last_login=last_login)
 
@@ -126,9 +129,62 @@ def dashboard():
 @login_required
 def logout():
     logout_user()
-    session.pop('user', None)  # Eliminamos la sesión manualmente
+    session.pop('user', None)
     return redirect(url_for('login'))
 
+@app.route('/ruleta')
+@login_required
+def ruleta():
+    premios = ['Premio 1', 'Premio 2', 'Premio 3']
+    resultado = random.choice(premios)
+    return render_template('ruleta.html', resultado=resultado)
+
+@app.route('/calculadora')
+@login_required
+def calculadora():
+    return render_template('calculadora.html')
+
+@app.route('/save_history', methods=['POST'])
+@login_required
+def save_history():
+    data = request.get_json()
+    operation = data.get('operation')
+    if operation:
+        history_entry = History(operation=operation, user_id=current_user.id)
+        db.session.add(history_entry)
+        db.session.commit()
+    user_history = History.query.filter_by(user_id=current_user.id).all()
+    history = [entry.operation for entry in user_history]
+    return {"history": history}
+
+@app.route('/get_history', methods=['GET'])
+@login_required
+def get_history():
+    user_history = History.query.filter_by(user_id=current_user.id).all()
+    history = [entry.operation for entry in user_history]
+    return {"history": history}
+
+@app.route('/clear_history', methods=['POST'])
+@login_required
+def clear_history():
+    History.query.filter_by(user_id=current_user.id).delete()
+    db.session.commit()
+    return {"history": []}
+
+@app.route('/generador', methods=['GET', 'POST'])
+@login_required
+def generador():
+    if request.method == 'POST':
+        longitud = int(request.form['longitud'])
+        caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()'
+        password = ''.join(random.choices(caracteres, k=longitud))
+        return render_template('generador.html', password=password)
+    return render_template('generador.html')
+
+@app.route('/juego')
+@login_required
+def juego():
+    return render_template('juego.html'
 # Crear base de datos y usuario de ejemplo si no existe
 if __name__ == '__main__':
     # Crear base de datos y usuario de ejemplo si no existe
