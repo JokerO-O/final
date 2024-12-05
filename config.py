@@ -6,4 +6,5 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 SESSION_TYPE = 'filesystem'  # Otras opciones: 'redis', 'memcached', etc.
 SESSION_PERMANENT = False  # Para sesiones no permanentes
 SESSION_USE_SIGNER = True  # Opcional, para firmar las sesiones
-SESSION_COOKIE_NAME = 'your_session_cookie_name'  # Nombre de la cookie
+SESSION_COOKIE_NAME = 'session'
+
