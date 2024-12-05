@@ -15,9 +15,14 @@ app = Flask(__name__)
 
 # Configuración
 # Configuración (antes de crear la app)
-app.config['SECRET_KEY'] = 'clave_secreta_segura'
+app.config['SECRET_KEY'] = '2511'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
+
+# Si usas flask-session, asegúrate de que se configure correctamente
+app.config['SESSION_TYPE'] = 'filesystem'  # O 'redis', dependiendo de tu configuración
 
 # Configuración de Flask-Session
 app.config['SESSION_TYPE'] = 'filesystem'  # Otras opciones: 'redis', 'memcached', etc.
