@@ -198,7 +198,8 @@ if __name__ == '__main__':
             new_user.set_password('1234')
             db.session.add(new_user)
             db.session.commit()
-
-  if __name__ == '__main__':
+if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
+
+
 
