@@ -1,7 +1,7 @@
+from flask_session import Session 
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
-from flask_session import Session  # Importar Flask-Session
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user # Importar Flask-Session
 from datetime import datetime
 import random, os
 from flask_wtf import FlaskForm
@@ -25,7 +25,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SESSION_TYPE'] = 'filesystem'  # O 'redis', dependiendo de tu configuración
 
 # Configuración de Flask-Session
-app.config['SESSION_TYPE'] = 'filesystem'  # Otras opciones: 'redis', 'memcached', etc.
+
 app.config['SESSION_PERMANENT'] = False  # Para sesiones no permanentes
 app.config['SESSION_USE_SIGNER'] = True  # Opcional, para firmar las sesiones
 app.config['SESSION_COOKIE_NAME'] = 'session'
