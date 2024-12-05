@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
-from flask_session import Session
+from flask_session import Session  # Importar Flask-Session
 from datetime import datetime
 import random, os
 from flask_wtf import FlaskForm
@@ -10,13 +10,13 @@ from wtforms.validators import DataRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 import pytz
 
-# Inicializa la app
+# Crear la instancia de Flask
 app = Flask(__name__)
 
-# Configura la sesión y la base de datos
+# Configuración
 app.config.from_pyfile('config.py')
 
-# Inicializa la sesión con Flask-Session
+# Inicializar Flask-Session
 Session(app)
 
 # Inicializa SQLAlchemy y LoginManager
