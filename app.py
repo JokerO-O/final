@@ -191,6 +191,7 @@ def juego():
 
 # Crear base de datos y usuario de ejemplo si no existe
 if __name__ == '__main__':
+    # Crear base de datos y usuario de ejemplo si no existe
     with app.app_context():
         db.create_all()
         if not User.query.filter_by(username='admin').first():
@@ -198,6 +199,8 @@ if __name__ == '__main__':
             new_user.set_password('1234')
             db.session.add(new_user)
             db.session.commit()
-
+    
+    # Iniciar la aplicación Flask
     app.run(debug=True, host='0.0.0.0')
+
 
