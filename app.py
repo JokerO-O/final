@@ -1,38 +1,20 @@
-from flask_session import Session 
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user # Importar Flask-Session
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from datetime import datetime
-import random, os
+import pytz
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired, Email, Length
-from werkzeug.security import generate_password_hash, check_password_hash
-import pytz
 
 # Crear la instancia de Flask
 app = Flask(__name__)
 
 # Configuración
-# Configuración (antes de crear la app)
-app.config['SECRET_KEY'] = '2511'
+app.config['SECRET_KEY'] = '2511'  # Se usa para firmar las cookies de sesión
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-
-
-# Si usas flask-session, asegúrate de que se configure correctamente
-app.config['SESSION_TYPE'] = 'filesystem'  # O 'redis', dependiendo de tu configuración
-
-# Configuración de Flask-Session
-
-app.config['SESSION_PERMANENT'] = False  # Para sesiones no permanentes
-app.config['SESSION_USE_SIGNER'] = True  # Opcional, para firmar las sesiones
-app.config['SESSION_COOKIE_NAME'] = 'session'
-app.config.from_pyfile('config.py')
-
-# Inicializar Flask-Session
-Session(app)
 
 # Inicializa SQLAlchemy y LoginManager
 db = SQLAlchemy(app)
@@ -55,13 +37,11 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password, password)
 
     def get_last_login_in_timezone(self):
-        """Convierte last_login a la zona horaria RD antes de mostrarlo."""
         if self.last_login:
-            # Convertimos el datetime a la zona horaria de RD
             local_time = self.last_login.astimezone(self.tz)
-            return local_time.strftime('%Y-%m-%d %H:%M:%S')  # Puedes cambiar el formato
+            return local_time.strftime('%Y-%m-%d %H:%M:%S')
         return None
-    
+
 class History(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     operation = db.Column(db.String(200), nullable=False)
@@ -99,9 +79,9 @@ def login():
         if user and user.check_password(password):
             # Guardar la hora actual en UTC y luego convertir a RD
             user.last_login = datetime.now(pytz.utc)  # Almacena la hora en UTC
-            db.commit()
+            db.session.commit()
             login_user(user)
-            session['user'] = user.username
+            session['user'] = user.username  # Guardamos el nombre de usuario en la sesión
             return redirect(url_for('dashboard'))
         flash('Credenciales incorrectas.')
     return render_template('login.html')
@@ -146,10 +126,8 @@ def dashboard():
 @login_required
 def logout():
     logout_user()
-    session.pop('user', None)
+    session.pop('user', None)  # Eliminamos la sesión manualmente
     return redirect(url_for('login'))
-
-# Más rutas y lógica de la app...
 
 # Crear base de datos y usuario de ejemplo si no existe
 if __name__ == '__main__':
