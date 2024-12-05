@@ -81,11 +81,10 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
-
         if user and user.check_password(password):
             # Guardar la hora actual en UTC y luego convertir a RD
             user.last_login = datetime.now(pytz.utc)  # Almacena la hora en UTC
-            db..commit()
+            db.commit()
             login_user(user)
             session['user'] = user.username
             return redirect(url_for('dashboard'))
