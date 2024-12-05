@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired, Email, Length
+import random
 
 # Crear la instancia de Flask
 app = Flask(__name__)
@@ -184,7 +185,7 @@ def generador():
 @app.route('/juego')
 @login_required
 def juego():
-    return render_template('juego.html'
+    return render_template('juego.html')
 # Crear base de datos y usuario de ejemplo si no existe
 if __name__ == '__main__':
     # Crear base de datos y usuario de ejemplo si no existe
