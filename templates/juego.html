@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Caza los patos de colores{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego de Patos</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesjuego.css') }}">
+</head>
+<body>
+  <div id="game-container">
+    <h1 id="title">¡Caza los Patos de colores!</h1>
+    <div id="controls">
+      <button id="start-btn">Iniciar Juego</button>
+      <button id="stop-btn" disabled>Detener Juego</button>
+    </div>
+    <div id="score">Puntos: 0</div>
+    <div id="time">Tiempo: 0s</div>
+    <div id="game-area"></div>
+    <div id="game-over" style="display: none;">
+      <h2>¡Juego Terminado!</h2>
+      <p id="final-score">Puntos finales: 0</p>
+      <button onclick="restartGame()">Reiniciar Juego</button>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='game.js') }}"></script>
+
+</body>
+</html>
+{% endblock %}

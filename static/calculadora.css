@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo interactivo */
+body {
+    background: linear-gradient(45deg, #ff6b6b, #ffbd69, #ffee65, #56cfe1, #6a82fb);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Animación del fondo */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+/* Contenedor principal */
+.calculadora {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+/* Título */
+h1 {
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* Campo de texto */
+.textview {
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    text-align: right;
+    background-color: #f1f1f1;
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones */
+.button {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: #ff6b6b;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* Colores de botones especiales */
+.button.operator {
+    background-color: #56cfe1;
+}
+
+.button.operator:hover {
+    background-color: #4fa3c5;
+}
+
+.button.equals {
+    background-color: #ffbd69;
+    color: white;
+}
+
+.button.equals:hover {
+    background-color: #eaa83b;
+}
+
+/* Estilo para los botones CE y C */
+.button.clear {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.button.clear:hover {
+    background-color: #e74c3c;
+}
+
+/* Diseño para el contenedor de botones */
+table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+td {
+    padding: 5px;
+    text-align: center;
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+/* Responsivo */
+@media (max-width: 400px) {
+    .calculadora {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .textview {
+        font-size: 24px;
+    }
+
+    .button {
+        font-size: 22px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+

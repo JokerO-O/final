@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Generador de Contraseñas{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesregistro.css') }}">
+
+<div class="container">
+    <h2>Generador de Contraseñas</h2>
+    <form method="POST">
+        <label for="longitud">Longitud de la contraseña:</label>
+        <input type="number" name="longitud" id="longitud" min="8" max="20" required>
+        <button type="submit">Generar</button>
+    </form>
+    {% if password %}
+        <p>Contraseña generada: <strong>{{ password }}</strong></p>
+    {% endif %}
+    <a href="{{ url_for('dashboard') }}">Volver al Dashboard</a>
+</div>
+{% endblock %}

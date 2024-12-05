@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block title %}Calculadora{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='calculadora.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='boton.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    
+    <title>Calculadora</title>
+    <script>
+        function insert(num) {
+            document.form.text.value = document.form.text.value + num;
+        }
+
+        function equal() {
+            var exp = document.form.text.value;
+            if (exp) {
+                try {
+                    var result = eval(exp);
+                    document.form.text.value = result;
+                    saveHistory(exp + " = " + result);
+                } catch (e) {
+                    alert('Error en la expresión');
+                }
+            }
+        }
+
+        function clean() {
+            document.form.text.value = "";
+        }
+
+        function back() {
+            var exp = document.form.text.value;
+            document.form.text.value = exp.substring(0, exp.length - 1);
+        }
+
+        function saveHistory(operation) {
+            fetch('/save_history', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ operation: operation })
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayHistory(data.history);
+            });
+        }
+
+        function displayHistory(history) {
+            let historyDiv = document.getElementById('history');
+            historyDiv.innerHTML = "<h3>Historial</h3>";
+            history.forEach(item => {
+                historyDiv.innerHTML += "<p>" + item + "</p>";
+            });
+        }
+
+        function clearHistory() {
+            fetch('/clear_history', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    displayHistory(data.history);
+                });
+        }
+
+        window.onload = function () {
+            fetch('/get_history')
+                .then(response => response.json())
+                .then(data => {
+                    displayHistory(data.history);
+                });
+        }
+    </script>
+</head>
+<body>
+    <div class="calculadora">
+        <h1>Calculadora</h1>
+        <form name="form">
+            <input class="textview" name="text">
+        </form>
+        <table>
+            <tr>
+                <td><input class="button" type="button" value="C" onclick="clean()"></td>
+                <td><input class="button" type="button" value="←" onclick="back()"></td>
+                <td><input class="button" type="button" value="/" onclick="insert('/')"></td>
+                <td><input class="button" type="button" value="x" onclick="insert('*')"></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="7" onclick="insert('7')"></td>
+                <td><input class="button" type="button" value="8" onclick="insert('8')"></td>
+                <td><input class="button" type="button" value="9" onclick="insert('9')"></td>
+                <td><input class="button" type="button" value="-" onclick="insert('-')"></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="4" onclick="insert('4')"></td>
+                <td><input class="button" type="button" value="5" onclick="insert('5')"></td>
+                <td><input class="button" type="button" value="6" onclick="insert('6')"></td>
+                <td><input class="button" type="button" value="+" onclick="insert('+')"></td>
+            </tr>
+            <tr>
+                <td><input class="button" type="button" value="1" onclick="insert('1')"></td>
+                <td><input class="button" type="button" value="2" onclick="insert('2')"></td>
+                <td><input class="button" type="button" value="3" onclick="insert('3')"></td>
+                <td rowspan="2"><input class="button" style="height: 106px;" type="button" value="="
+                        onclick="equal()"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input class="button" style="width: 106px;" type="button" value="0"
+                        onclick="insert('0')"></td>
+                <td><input class="button" type="button" value="." onclick="insert('.')"></td>
+            </tr>
+        </table>
+        <div id="history"></div>
+        <button onclick="clearHistory()">Borrar historial</button>
+    </div>
+</body>
+</html>
+{% endblock %}

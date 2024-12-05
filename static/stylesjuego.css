@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('https://i.etsystatic.com/10876588/r/il/e68e95/758703652/il_fullxfull.758703652_b9m4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    color: #4b9cd3;
+  }
+  
+  /* Puntero personalizado para el área del juego */
+  #game-container {
+    background: linear-gradient(145deg, #6ec1e4, #3d9f99);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 1000px;
+    height: 600px;
+    position: relative;
+    cursor: url('https://e7.pngegg.com/pngimages/268/424/png-clipart-shooting-target-reticle-weapon-weapon-game-angle.png'), crosshair; /* Puntero personalizado */
+  }
+  
+  #title {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  
+  #controls button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #4b9cd3;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  #controls button:hover {
+    background-color: #3498db;
+  }
+  
+  #controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  #score, #time {
+    font-size: 1.2rem;
+    margin: 10px;
+    color: #ffffff;
+  }
+  
+  #game-area {
+    width: 100%;
+    height: 300px;
+    background-color: #d3f3ff;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    cursor: url('https://e7.pngegg.com/pngimages/268/424/png-clipart-shooting-target-reticle-weapon-weapon-game-angle.png'), crosshair; /* Puntero personalizado */
+  }
+  
+  .duck {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('https://www.gifsanimados.org/data/media/481/pato-imagen-animada-0108.gif');
+    background-size: cover;
+    cursor: pointer; /* Puntero normal para los patos */
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  #game-over {
+    font-size: 1.5rem;
+    color: #f44336;
+  }
+  
+  button {
+    margin-top: 20px;
+    font-size: 1.2rem;
+  }
+  

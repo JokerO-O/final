@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Aplicación Web{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesdash.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='boton.css') }}">
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('logout') }}" class="access-links">Cerrar sesión</a>
+    </header>
+
+    <div class="container">
+        <h2>Bienvenido, {{ current_user.username }}</h2>
+        <p>Última conexión: {{ last_login }}</p>
+        <ul class="dashboard-links">
+            <li><a href="{{ url_for('calculadora') }}">Calculadora</a></li>
+            <li><a href="{{ url_for('generador') }}">Generador de Contraseñas</a></li>
+            <li><a href="{{ url_for('juego') }}">Juego</a></li>
+            <li><a href="{{ url_for('ruleta') }}">Ruleta</a></li>
+        </ul>
+    </div>
+</body>
+</html>

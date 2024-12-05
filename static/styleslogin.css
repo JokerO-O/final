@@ -1,0 +1,102 @@
+body{
+    background-image: url("https://www.gifcen.com/wp-content/uploads/2023/07/hacker-gif-8.gif");
+}
+/* Contenedor principal que usa flexbox para centrar todo el contenido */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Estilo del contenedor del formulario */
+  .container {
+    background-color: #333; /* Fondo oscuro para el formulario */
+    padding: 2rem;
+    border-radius: 20px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor */
+    width: 100%;
+    max-width: 350px; /* Ajuste para que no sea muy grande */
+    text-align: center; /* Centra el contenido dentro del contenedor */
+  }
+  
+  /* Estilo de todo el formulario */
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  /* Estilos para los campos de entrada */
+  .form .input-span {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form input[type="text"],
+  .form input[type="password"],
+  .form input[type="email"] {
+    border-radius: 0.5rem;
+    padding: 1rem 0.75rem;
+    width: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #9c9c9c60;
+    outline: 2px solid #707070;
+  }
+  
+  .form input[type="text"]:focus,
+  .form input[type="password"]:focus,
+  .form input[type="email"]:focus {
+    outline: 2px solid #58bc82; /* Color del borde en foco */
+  }
+  
+  .label {
+    align-self: flex-start;
+    color: #58bc82; /* Color del texto de la etiqueta */
+    font-weight: 600;
+  }
+  
+  /* Estilos para el botón de envío */
+  .form .submit {
+    padding: 1rem 0.75rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 3rem;
+    background-color: #707070;
+    color: #efefef; /* Color del texto */
+    border: none;
+    cursor: pointer;
+    transition: all 300ms;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .form .submit:hover {
+    background-color: #58bc82;
+    color: #707070;
+  }
+  
+  .span {
+    text-decoration: none;
+    color: #efefef;
+  }
+  
+  .span a {
+    color: #58bc82;
+  }
+  
+  /* Estilo para el título "Iniciar Sesión" */
+  .form-title {
+    color: #58bc82;
+    margin-bottom: 1.5rem;
+  }
+  

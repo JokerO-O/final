@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleslogin.css') }}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <!-- Título "Iniciar Sesión" justo arriba del formulario -->
+            <h2 class="form-title">Iniciar Sesión</h2>
+
+            <!-- Mostrar mensaje de error o éxito -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash">{{ messages[0] }}</div>
+                {% endif %}
+            {% endwith %}
+
+            <!-- Formulario de inicio de sesión -->
+            <form method="POST" action="{{ url_for('login') }}" class="form">
+                <span class="input-span">
+                    <label for="username" class="label">Usuario</label>
+                    <input type="text" name="username" id="username" required placeholder="Ingrese su nombre de usuario">
+                </span>
+
+                <span class="input-span">
+                    <label for="password" class="label">Contraseña</label>
+                    <input type="password" name="password" id="password" required placeholder="Ingrese su contraseña">
+                </span>
+
+                <input class="submit" type="submit" value="Iniciar Sesión" />
+
+                <span class="span">¿No tienes cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a></span>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
